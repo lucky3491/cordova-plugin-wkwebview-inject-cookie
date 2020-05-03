@@ -5,6 +5,7 @@ When switching to wkWebView in Cordova for iOS some plugins have the known issue
 While this issue could probably only get fixed by Apple in the first place, there is a simple workaround available to get it working: Once a dummy cookie is placed into the WKHTTPCookieStore manually, the syncronization gets triggered (started) and it won't bug you ever again.
 
 Unfortunately this only works for IOS real devices not for simulators.
+This plugin is supported with cordova-plugin-webview-engine
 
 ## Usage
 
