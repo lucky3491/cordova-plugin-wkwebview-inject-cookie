@@ -7,8 +7,10 @@ While this issue could probably only get fixed by Apple in the first place, ther
 Unfortunately this only works for IOS real devices not for simulators.
 This plugin is supported with cordova-plugin-webview-engine
 
-## Usage
+Command `cordova plugin add https://github.com/lucky3491/cordova-plugin-wkwebview-inject-cookie`
 
+## Usage
+Ionic 1
 ```
 cookiesArray = [{
   domain: 'abc.xyz',
@@ -20,6 +22,32 @@ cookiesArray = [{
 wkWebView.injectCookie(cookiesArray);
 
 ```
+ionic 2 plus
+
+#app.component.ts declare wkWebView:
+```
+declare var wkWebView: any;
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+
+initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+      // This syncs the cookies on IOS devices when the app initializes.
+      // This ensures that the login response cookie will be sent with all subsequent requests.
+      if (this.platform.is('ios')) {
+        wkWebView.injectCookie('YOUR API ENDPOINT HERE');
+      }
+
+```
+
+
 You have to get cookies from api and send to this plugin 
 
 When you want to update cookies the you have to send cookies array to the plugin
